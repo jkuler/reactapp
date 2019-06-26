@@ -38,6 +38,7 @@ class BurgerBuilder extends Component {
 
     }
     componentDidMount(){
+        console.log(this.props);
         axios.get('https://reactstart-d077d.firebaseio.com/ingredients.json')
              .then(res => {
                  this.setState({ ingredients: res.data});
@@ -105,30 +106,30 @@ class BurgerBuilder extends Component {
     }
     purchaseContinueHandler = () => {
         // alert("You continue!");
-        this.setState({loading: true});
-        const order = {
-            ingrediens: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer : {
-                name: 'josue',
-                address: {
-                    street: ' the street',
-                    zipCode: '4152',
-                    country: 'Germany'
-                },
-                email: 'email@test.com'
+        // this.setState({loading: true});
+        // const order = {
+        //     ingrediens: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer : {
+        //         name: 'josue',
+        //         address: {
+        //             street: ' the street',
+        //             zipCode: '4152',
+        //             country: 'Germany'
+        //         },
+        //         email: 'email@test.com'
 
-            },
-            deliveryMethod: 'express'
-        }
-        axios.post('/orders.json', order)
-             .then(res => {
-                 this.setState({loading: false, purchasing: false })
-             })
-             .catch(err => {
-                 this.setState({loading: false, purchasing: false })
-             });
-
+        //     },
+        //     deliveryMethod: 'express'
+        // }
+        // axios.post('/orders.json', order)
+        //      .then(res => {
+        //          this.setState({loading: false, purchasing: false })
+        //      })
+        //      .catch(err => {
+        //          this.setState({loading: false, purchasing: false })
+        //      });
+        this.props.history.push("/checkout")
     }
  
     render(){
