@@ -45,7 +45,7 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients
+        ings: state.burgerBuilder.ingredients
     }
 }
 // while using mapstateToDispatch (null, mapstateToDispatch)
