@@ -8,5 +8,6 @@ export { purchaseBurger,
         } from './order'
 
 export  {
-   auth
+   auth,
+   logout
 } from './auth'
