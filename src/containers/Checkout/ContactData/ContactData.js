@@ -116,7 +116,7 @@ class ContactData extends Component {
             orderData: formData
             
         }
-        this.props.onOrderBurger(order)
+        this.props.onOrderBurger(order, this.props.token)
       
    }
    validationCheck = (value, rules) => {
@@ -176,10 +176,10 @@ class ContactData extends Component {
         }
         let form = (
             <form onSubmit={this.orderHandler}>
-                 { formElementsArray.map((formElement, k) => {
+                 { formElementsArray.map(formElement => {
                      return (
                      <Input 
-                        key={k}
+                        key={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
@@ -192,9 +192,9 @@ class ContactData extends Component {
                 <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
              </form>
         );
-        if (this.props.loading) {
-            form = <Spinner />
-        }
+        // if (this.props.loading) {
+        //     form = <Spinner />
+        // }
         return (
             <div className={classes.ContactData}>
                 <h4>Enter your Contact Data</h4>
@@ -208,13 +208,14 @@ const mapStateToProps = state => {
     return {
        ings: state.burgerBuilder.ingredients,
        price: state.burgerBuilder.totalPrice,
-       loading:  state.order.loading
+       loading:  state.order.loading,
+       token: state.auth.token
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
+        onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token))
     }
     
 }
