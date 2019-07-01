@@ -3,7 +3,6 @@ import CheckoutSummary from '../../components/Order/CheckoutSummary';
 
 import {Route, Redirect} from 'react-router-dom';
 import ContactData from './ContactData/ContactData';
-import * as actionTypes from '../../store/actions/index';
 
 // redux import
 import { connect }  from 'react-redux';
