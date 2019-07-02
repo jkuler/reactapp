@@ -8,12 +8,7 @@ import ContactData from './ContactData/ContactData';
 import { connect }  from 'react-redux';
 
 class Checkout extends Component {
-  // state = {
-  //     ingredients : null,
-  //     price: 0
-  // }
 
- 
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
   }
