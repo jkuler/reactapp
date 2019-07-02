@@ -6,7 +6,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.css'
 import * as actions from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
-import { updatedObject } from '../../shared/utility'
+import { updatedObject, validationCheck } from '../../shared/utility'
 
 class Auth extends Component {
    state = {
@@ -50,35 +50,13 @@ class Auth extends Component {
         }
    }
 
-   validationCheck = (value, rules) => {
-    let isValid = true;
 
-    if (rules.required) {
-        isValid = value.trim() !== '' && isValid;
-    }
-    if (rules.minLength) {
-        isValid = value.length >= rules.minLength && isValid
-    }
-    if (rules.maxLength) {
-        isValid = value.length <= rules.maxLength && isValid
-    }
-    if(rules.isEmail) {
-        const pattern = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-        isValid = pattern.test(value) && isValid
-    }
-    if (rules.isNumeric) {
-        const pattern = /^\d+$/;
-        isValid = pattern.test(value) && isValid;
-    }
-
-    return isValid;
-}
 
 inputChangedHandler = (event, controlName) => {
     const updatedControls = updatedObject(this.state.controls, {
         [controlName] : updatedObject(this.state.controls[controlName], {
              value: event.target.value,
-            valid: this.validationCheck(event.target.value, this.state.controls[controlName].validation),
+            valid: validationCheck(event.target.value, this.state.controls[controlName].validation),
             touched: true
         })
     })  
