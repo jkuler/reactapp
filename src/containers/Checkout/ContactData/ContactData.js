@@ -114,7 +114,7 @@ class ContactData extends Component {
             ingredients: this.props.ings,
             price: this.props.price,
             orderData: formData,
-            userId: this.props.userId
+            userId: this.props.user
             
         }
         this.props.onOrderBurger(order, this.props.token)
@@ -193,9 +193,9 @@ class ContactData extends Component {
                 <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
              </form>
         );
-        // if (this.props.loading) {
-        //     form = <Spinner />
-        // }
+        if (this.props.loading) {
+            form = <Spinner />
+        }
         return (
             <div className={classes.ContactData}>
                 <h4>Enter your Contact Data</h4>
